@@ -49,7 +49,8 @@ Status Pop(LinkedStack *, ElemType *);
 //将栈顶元素推出至e,并从链栈中删除该元素
 int IsLStackEmpty(LinkedStack *);
 //判断链栈是否为空
-Status TravalseLStack(LinkedStack *s ，Status(*visit)(ElemType *));
+//Status StackTraverse(LinkedStack *，Status (*visit)(ElemType*));
+Status StackTraverse(LinkedStack*, Status (*visit)(ElemType*));
 //遍历链栈中每一个元素，若访问失败，则返回ERROR
 
 //-----------------------------
@@ -114,7 +115,7 @@ Status GetTop(LinkedStack *s, ElemType *e)
 	if (!s) return ERROR;
 	
 	t = s->next;
-	e = t->data;
+	*e = t->data;
 	return OK;
 } //GetTop
 
@@ -138,7 +139,7 @@ Status Pop(LinkedStack *s, ElemType *e)
 	if (!s) return ERROR;
 	
 	t = s->next;
-	e = t->data;
+	*e = t->data;
 	s->next = t->next;
 	free(t);
 	return OK;
@@ -153,7 +154,8 @@ Status IsLStackEmpty(LinkedStack *s)
 	else return FALSE;
 } //IsLStackEmpty
 
-Status TravalseLStack(LinkedStack *s，Status (*visit)(ElemType *))
+//Status StackTraverse(LinkedStack *s，Status (*visit)(ElemType *))
+Status StackTraverse(LinkedStack* s, Status (*visit)(ElemType*))
 {
 	//遍历链栈中每一个元素，若访问失败，则返回ERROR
 	/*LinkedStack *t;
@@ -178,7 +180,7 @@ Status TravalseLStack(LinkedStack *s，Status (*visit)(ElemType *))
 		return OK;
 	else
 		return ERROR;
-} //TravalseLStack*/
+} //TravalseLStack
 
 int main()
 {
